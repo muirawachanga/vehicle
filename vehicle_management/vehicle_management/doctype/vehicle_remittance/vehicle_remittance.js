@@ -157,10 +157,10 @@ cur_frm.cscript.recalculate_expenses = function(frm, cdt, cdn) {
     cur_frm.cscript.lookup_obj(frm.doc.remittance_summary, "description", "Total Expenses").amount = frm.doc.total_expenses;
     cur_frm.cscript.lookup_obj(frm.doc.remittance_summary, "description", "Deductible Expenses").amount = frm.doc.deductible_expenses;
 
-    // Net Amount To Landlord
-    var net = flt(frm.doc.remittable_collections) - (flt(frm.doc.management_fee) + flt(frm.doc.deductible_expenses));
-    cur_frm.cscript.lookup_obj(frm.doc.remittance_summary, "description", "Net Amount To Landlord").amount = net;
-    frm.doc.remittance_amount = net;
+    // Net Amount To owner
+    var net = flt(frm.doc.management_fee) - flt(frm.doc.deductible_expenses);
+    cur_frm.cscript.lookup_obj(frm.doc.remittance_summary, "description", "Amount remittable").amount = net;
+    frm.doc.management_fee = net;
 
     frm.refresh_fields();
 

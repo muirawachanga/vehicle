@@ -27,12 +27,12 @@ from frappe.utils import flt
 
 class RemittancePayment (Document):
     def get_customer_name(self):
-        owc = frappe.get_doc('Owner Contract', self.get('owner_contract'))
+        owc = frappe.get_doc('Vehicle Owner Contract', self.get('owner_contract'))
         return owc.owner_customer
 
     def on_submit(self):
         self.set('user_remark',
-                 self.get('user_remark') or "" + " Being Remittance Payment for Landlord Remittance No: " +
+                 self.get('user_remark') or "" + " Being Remittance Payment for Vehicle Remittance No: " +
                  self.get("landlord_remittance"))
 
         def postprocess(source, target):
@@ -46,12 +46,12 @@ class RemittancePayment (Document):
             dr_entry = target.append("accounts", {})
             dr_entry.account = source.get("trust_fund_account")
             dr_entry.debit_in_account_currency = source.get("amount_paid")
-            dr_entry.reference_type = 'Remittance Payment Voucher'
+            dr_entry.reference_type = 'Remittance Payment'
             # dr_entry.reference_name = self.name //TODO make a query in the custom script
 
             target.set("posting_date", source.get("posting_date"))
             target.set("user_remark", target.get('user_remark') or "" +
-                       " Being Remittance Payment for Landlord Remittance No: " + source.get("landlord_remittance"))
+                       " Being Remittance Payment for Vehicle Remittance No: " + source.get("landlord_remittance"))
             target.flags.ignore_permissions = True
 
         journal_e = get_mapped_doc(self.doctype, self.name, {
@@ -77,7 +77,7 @@ class RemittancePayment (Document):
         self.create_deductions_invoice(adv_journal_entry)
 
     def before_cancel(self):
-        mgt_fee_inv = frappe.get_list("Sales Invoice", fields="*", filters=[["remittance_reference", "=", self.name],
+        mgt_fee_inv = frappe.get_list("Sales Invoice", fields="*", filters=[["remittance_references", "=", self.name],
                                                                             ["docstatus", "=", 1]])
         for i in mgt_fee_inv:
             inv = frappe.get_doc('Sales Invoice', i.get('name'))
@@ -100,7 +100,7 @@ class RemittancePayment (Document):
         lr = frappe.get_doc("Vehicle Remittance", self.landlord_remittance)
 
         if lr.docstatus != 1:
-            raise ValidationError("Landlord Remittance must be submitted first before payment.")
+            raise ValidationError("Vehicle Remittance must be submitted first before payment.")
 
         if lr.payment_status == 'Settled':
             raise ValidationError("Remittance already settled. Cannot create a Remittance Voucher.")
@@ -126,7 +126,7 @@ class RemittancePayment (Document):
         # inv.set('title', cust.name)
         inv_items = frappe.new_doc('Sales Invoice Item')
 
-        settings = frappe.get_single("Vehicle Management Settings")
+        settings = frappe.get_single("Vehicle Management Setting")
         if settings.default_expense_reimbursement_item in (None, ""):
             frappe.throw(_("Invoice item for expense reimbursement fee items is missing. "
                            "Please set it under Property Management Settings."))
@@ -146,7 +146,7 @@ class RemittancePayment (Document):
 
         self.alloc_advances(inv, adv_journal_entry)
 
-        inv.set('remittance_reference', self.name)
+        inv.set('remittance_references', self.name)
         inv.save()
         inv.submit()
 
@@ -158,7 +158,7 @@ class RemittancePayment (Document):
         inv.set("customer", cust.name, True)
         # inv.set('title', cust.name)
         inv_items = frappe.new_doc('Sales Invoice Item')
-        settings = frappe.get_single("Vehicle Management Settings")
+        settings = frappe.get_single("Vehicle Management Setting")
         if settings.default_management_fee_item in (None, ""):
             frappe.throw(_("Invoice item for management fee items is missing. "
                            "Please set it under Vehicle Management Settings."))
@@ -177,7 +177,7 @@ class RemittancePayment (Document):
 
         self.alloc_advances(inv, adv_journal_entry)
 
-        inv.set('remittance_reference', self.name)
+        inv.set('remittance_references', self.name)
         inv.save()
         inv.submit()
 

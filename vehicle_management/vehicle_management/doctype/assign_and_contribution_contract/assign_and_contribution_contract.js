@@ -6,9 +6,18 @@ frappe.ui.form.on('Assign and contribution contract', {
 	    if(frm.doc.__islocal){
 	        frm.trigger('calculate_date_amount')
 	    }
-        frm.add_custom_button(__("Create Invoice"), function() {
-            frm.events.make_invoice(frm);
-        }).addClass("btn-primary");
+	    if (frm.doc.status == 'Active' || frm.doc.status == 'Suspended') {
+            frm.add_custom_button(__("Create Invoice"), function() {
+                frm.events.make_invoice(frm)
+            }).addClass("btn-primary");
+        }
+        if (frm.doc.status == 'Reassigned' || frm.doc.status == 'Terminated' || frm.doc.status == 'Rejected'){
+            return frappe.call({
+                method: 'set_available',
+                doc: frm.doc
+            })
+
+        }
 
     },
     validate: function(frm){
@@ -70,6 +79,7 @@ frappe.ui.form.on('Assign and contribution contract', {
     },
     end_date: function(frm){
         frm.trigger('calculate_date_amount')
+        frm.set_value('termination_date', frm.doc.end_date)
         if (frm.doc.vehicle_status == 'Self Drive'){
 
         }
@@ -78,7 +88,6 @@ frappe.ui.form.on('Assign and contribution contract', {
         if (frm.doc.total_amount_expected != frm.doc.total_amount){
             frm.set_value('total_amount', frm.doc.total_amount_expected)
             refresh_field('total_amount')
-            console.log('i was executed')
         }
 
     },
@@ -118,17 +127,24 @@ frappe.ui.form.on('Assign and contribution contract', {
         }
 
     });
+cur_frm.fields_dict['vehicle'].get_query = function (doc, cdt, cdn) {
+  return {
+    filters: {
+      'vehicle_status': 'Available'
+    }
+  }
+}
 
 //     used to calculate the total in the contribution table
 
-    var calculate_total_amount = function(frm) {
-        var tl = frm.doc.contributions || [];
-        var total_amount = 0;
-        for(var i=0; i<tl.length; i++) {
-            if (tl[i].amount_deposited) {
-                total_amount += tl[i].amount_deposited;
-            }
+var calculate_total_amount = function(frm) {
+    var tl = frm.doc.contributions || [];
+    var total_amount = 0;
+    for(var i=0; i<tl.length; i++) {
+        if (tl[i].amount_deposited) {
+            total_amount += tl[i].amount_deposited;
         }
-        frm.set_value("total_amount", total_amount);
-        refresh_field('total_amount')
     }
+    frm.set_value("total_amount", total_amount);
+    refresh_field('total_amount')
+}

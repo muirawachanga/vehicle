@@ -71,6 +71,44 @@ def get_data():
 
             ]
         },
+        {
+			"label": _("Main Reports"),
+			"icon": "fa fa-table",
+			"items": [
+
+				{
+					"type": "report",
+					"name":"General Ledger",
+					"doctype": "GL Entry",
+					"is_query_report": True,
+				},
+				{
+                    "type": "report",
+                    "name": "Trial Balance",
+                    "doctype": "GL Entry",
+                    "is_query_report": True,
+                },
+                {
+                    "type": "report",
+                    "name": "Balance Sheet",
+                    "doctype": "GL Entry",
+                    "is_query_report": True
+                },
+                {
+                    "type": "report",
+                    "name": "Cash Flow",
+                    "doctype": "GL Entry",
+                    "is_query_report": True
+                },
+                {
+                    "type": "report",
+                    "name": "Profit and Loss Statement",
+                    "doctype": "GL Entry",
+                    "is_query_report": True
+                },
+            ]
+        },
+
 		{
 			"label": _("Other Reports"),
 			"icon": "fa fa-table",

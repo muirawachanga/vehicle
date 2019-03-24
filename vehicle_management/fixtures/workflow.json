@@ -1,0 +1,208 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Workflow", 
+  "document_type": "Vehicle Owner Contract", 
+  "is_active": 1, 
+  "modified": "2019-03-12 22:45:47.214383", 
+  "name": "Vehicle Owner Contract", 
+  "override_status": 0, 
+  "states": [
+   {
+    "allow_edit": "System Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "New", 
+    "update_field": "contract_status", 
+    "update_value": "New"
+   }, 
+   {
+    "allow_edit": "System Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Active", 
+    "update_field": "contract_status", 
+    "update_value": "Active"
+   }, 
+   {
+    "allow_edit": "System Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Suspended", 
+    "update_field": "contract_status", 
+    "update_value": "Suspended"
+   }, 
+   {
+    "allow_edit": "System Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Terminated", 
+    "update_field": "contract_status", 
+    "update_value": "Terminated"
+   }, 
+   {
+    "allow_edit": "System Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Cancelled", 
+    "update_field": "contract_status", 
+    "update_value": "Cancelled"
+   }, 
+   {
+    "allow_edit": "System Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Rejected", 
+    "update_field": "contract_status", 
+    "update_value": "Rejected"
+   }
+  ], 
+  "transitions": [
+   {
+    "action": "Approve", 
+    "allowed": "System Manager", 
+    "next_state": "Active", 
+    "state": "New"
+   }, 
+   {
+    "action": "Reject", 
+    "allowed": "System Manager", 
+    "next_state": "Rejected", 
+    "state": "New"
+   }, 
+   {
+    "action": "Suspend", 
+    "allowed": "System Manager", 
+    "next_state": "Suspended", 
+    "state": "Active"
+   }, 
+   {
+    "action": "Terminate", 
+    "allowed": "System Manager", 
+    "next_state": "Terminated", 
+    "state": "Active"
+   }, 
+   {
+    "action": "Cancel", 
+    "allowed": "System Manager", 
+    "next_state": "Cancelled", 
+    "state": "Active"
+   }
+  ], 
+  "workflow_name": "Vehicle Owner Contract", 
+  "workflow_state_field": "workflow_state"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Workflow", 
+  "document_type": "Assign and contribution contract", 
+  "is_active": 1, 
+  "modified": "2019-03-19 23:11:28.199901", 
+  "name": "Assign Vehicle", 
+  "override_status": 0, 
+  "states": [
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "New", 
+    "update_field": "status", 
+    "update_value": "New"
+   }, 
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Active", 
+    "update_field": "status", 
+    "update_value": "Active"
+   }, 
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Reassigned", 
+    "update_field": "status", 
+    "update_value": "Reassigned"
+   }, 
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Suspended", 
+    "update_field": "status", 
+    "update_value": "Suspended"
+   }, 
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Terminated", 
+    "update_field": "status", 
+    "update_value": "Terminated"
+   }, 
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Cancelled", 
+    "update_field": "status", 
+    "update_value": "Cancelled"
+   }, 
+   {
+    "allow_edit": "Fleet Manager", 
+    "doc_status": "0", 
+    "message": null, 
+    "state": "Rejected", 
+    "update_field": "status", 
+    "update_value": "Rejected"
+   }
+  ], 
+  "transitions": [
+   {
+    "action": "Approve", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Active", 
+    "state": "New"
+   }, 
+   {
+    "action": "Reject", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Rejected", 
+    "state": "New"
+   }, 
+   {
+    "action": "Suspend", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Suspended", 
+    "state": "Active"
+   }, 
+   {
+    "action": "Terminate", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Terminated", 
+    "state": "Active"
+   }, 
+   {
+    "action": "Reassign", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Reassigned", 
+    "state": "Active"
+   }, 
+   {
+    "action": "Activate", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Active", 
+    "state": "Suspended"
+   }, 
+   {
+    "action": "Activate", 
+    "allowed": "Fleet Manager", 
+    "next_state": "Active", 
+    "state": "Reassigned"
+   }
+  ], 
+  "workflow_name": "Assign Vehicle", 
+  "workflow_state_field": "workflow_state"
+ }
+]

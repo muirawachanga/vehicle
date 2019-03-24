@@ -53,6 +53,32 @@ app_license = "MIT"
 
 # Installation
 # ------------
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters":[["name", "in", ['Sales Invoice-remittance_references', 'Assign and contribution contract-workflow_state', 'Vehicle Owner Contract-workflow_state',
+                                   'Purchase Invoice-vehicle_insured', 'Purchase Invoice-maintenance_and_repair', 'Purchase Invoice-insurance_policy', 'Purchase Invoice-driver_employee',
+                                   'Purchase Invoice-driver_customer', 'Purchase Invoice-start_date', 'Purchase Invoice-vehicle', 'Purchase Invoice-end_date', 'Sales Invoice-column_break',
+                                   'Sales Invoice-date_start', 'Sales Invoice-end_date', 'Sales Invoice-driver', 'Sales Invoice-vehicle', 'Sales Invoice-vehicle_details']]]
+    },
+    {
+        "dt": "Custom Script",
+        "filters":[["name", "in", ['Journal Entry-Client']]]
+    },
+    {
+        "dt": "Workflow",
+        "filters":[["name", "in", ['Assign Vehicle', 'Vehicle Owner Contract']]]
+    },
+    {
+        "dt": "Workflow Action",
+        "filters":[["name", "in", ['Reassign', 'Activate', 'Cancel', 'Suspend','Terminate','Reject', 'Approve']]]
+    },
+    {
+        "dt": "Workflow State",
+        "filters":[["name", "in", ['Reassigned', 'New', 'Active', 'Terminated', 'Suspended', 'Rejected', 'Cancelled']]]
+    }
+]
+
 
 # before_install = "vehicle_management.install.before_install"
 # after_install = "vehicle_management.install.after_install"

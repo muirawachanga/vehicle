@@ -6,8 +6,8 @@ def get_data():
 	return [
 		{
 			"module_name": "Vehicle Management",
-			"color": "grey",
-			"icon": "octicon octicon-file-directory",
+			"color": "#728C00",
+			"icon": "octicon octicon-car",
 			"type": "module",
 			"label": _("Vehicle Management")
 		}

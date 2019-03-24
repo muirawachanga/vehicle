@@ -12,26 +12,28 @@ frappe.ui.form.on('Remittance Payment', {
         frm.set_query('landlord_remittance', function () {
             return {
                 filters: [
-                    ['Landlord Remittance', 'docstatus', '=', 1],
-                    ['Landlord Remittance', 'payment_status', '=', 'Pending']
+                    ['Vehicle Remittance', 'docstatus', '=', 1],
+                    ['Vehicle Remittance', 'payment_status', '=', 'Pending']
                 ]
             }
         });
     },
     landlord_remittance: function (frm) {
         if (frm.doc.landlord_remittance) {
-            frappe.model.with_doc('Landlord Remittance', frm.doc.landlord_remittance, function (name, lr) {
+            frappe.model.with_doc('Vehicle Remittance', frm.doc.landlord_remittance, function (name, lr) {
                 if (lr && lr.docs) {
                     frm.set_value("owner_contract", lr.docs[0].owner_contract);
-                    frm.set_value("property_name", lr.docs[0].property_name);
+                    frm.set_value("vehicle", lr.docs[0].vehicle);
+                    frm.set_value("vehicle", lr.docs[0].vehicle_name);
                     frm.set_value("landlord_name", lr.docs[0].owner_name);
                     frm.set_value("net_remittance_amount", lr.docs[0].remittance_amount);
                     frm.set_value("amount_paid", lr.docs[0].remittance_amount);
                     frm.set_value("management_fee", lr.docs[0].management_fee);
                     frm.set_value("deductible_expenses", lr.docs[0].deductible_expenses);
-                    frappe.model.with_doc('Owner Contract', lr.docs[0].owner_contract, function (name, owc) {
+                    frappe.model.with_doc('Vehicle Owner Contract', lr.docs[0].owner_contract, function (name, owc) {
                         if (owc && owc.docs) {
-                            frappe.model.with_doc('Property', owc.docs[0].property, function (name, p) {
+                            if (!owc.docs[0].vehicle){owc.docs[0].vehicle = owc.docs[0].vehicle_name}
+                            frappe.model.with_doc('Vehicle Details', owc.docs[0].vehicle, function (name, p) {
                                 if (p && p.docs) {
                                     frm.set_value("trust_fund_account", p.docs[0].trust_fund_account);
                                 }
