@@ -52,12 +52,17 @@ class Assignandcontributioncontract(Document):
 
 
 	def calculate_total(self):
-		if self.total_amount <= 0.000:
-			for rows in self.get('contributions'):
-				self.total_amount += rows.amount_deposited
-			self.total_amount_expected = 0.000
+		# if self.total_amount <= 0.000:
+		for rows in self.get('contributions'):
+			self.total_amount += rows.amount_deposited
+		self.total_amount_expected = 0.000
 
 def validate_dates(self):
+	if self.status == 'Terminated':
+		if not self.termination_date:
+			frappe.throw(
+				_("You must set the contract termination date before terminating"))
+
 	last_inv = get_last_tc_invoice(self.vehicle)
 	if last_inv:
 		start_date_inv = getdate(last_inv.get('start_date'))
@@ -71,7 +76,7 @@ def validate_dates(self):
 			frappe.msgprint(_('The dates correspond from what is in the invoice, dates has been regenerated'))
 
 def validate_vehicle(self):
-	if self.status == 'Active':
+	if self.status == 'New':
 		get_vehicle_status = frappe.get_value('Vehicle Details', self.vehicle, 'vehicle_status')
 		if get_vehicle_status == 'Not available':
 			self.set('vehicle', '')
