@@ -33,6 +33,19 @@ frappe.ui.form.on('Maintenance and repair', {
 	    }
 
 	},
+	vehicle_contract: function (frm) {
+	    if(frm.doc.vehicle_contract){
+	        return frappe.call({
+	            method: 'create_vehicle',
+	            doc: frm.doc,
+	            callback: function(r){
+	                frm.refresh()
+	            }
+	        })
+	    }
+
+	},
+
 	company_pay: function(frm){
 	    frm.set_value('amount_paid', frm.doc.repair_cost)
 	    refresh_field('amount_paid')
@@ -154,4 +167,11 @@ cur_frm.cscript.generate_schedule = function(doc, cdt, cdn) {
 	} else {
 		frappe.msgprint(__("Please save the document before generating maintenance schedule"));
 	}
+}
+cur_frm.fields_dict['vehicle_contract'].get_query = function (doc, cdt, cdn) {
+  return {
+    filters: {
+      'vehicle': doc.vehicle
+    }
+  }
 }

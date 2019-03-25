@@ -1,0 +1,26 @@
+{
+ "add_total_row": 1, 
+ "apply_user_permissions": 1, 
+ "creation": "2019-03-25 19:24:41.598159", 
+ "disabled": 0, 
+ "docstatus": 0, 
+ "doctype": "Report", 
+ "idx": 0, 
+ "is_standard": "Yes", 
+ "modified": "2019-03-25 19:24:56.972744", 
+ "modified_by": "Administrator", 
+ "module": "Vehicle Management", 
+ "name": "Daily summary", 
+ "owner": "Administrator", 
+ "ref_doctype": "Assign and contribution contract", 
+ "report_name": "Daily summary  ", 
+ "report_type": "Script Report", 
+ "roles": [
+  {
+   "role": "System Manager"
+  }, 
+  {
+   "role": "Fleet Manager"
+  }
+ ]
+}

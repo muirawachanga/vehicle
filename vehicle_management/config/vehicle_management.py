@@ -75,7 +75,18 @@ def get_data():
 			"label": _("Main Reports"),
 			"icon": "fa fa-table",
 			"items": [
-
+                {
+                    "type": "report",
+                    "name": "Daily Summary",
+                    "doctype": "Assign and contribution contract",
+                    "is_query_report": True,
+                },
+                {
+                    "type": "page",
+                    "name": "sales-analytics",
+                    "label": _("Sales Analytics"),
+                    "icon": "fa fa-bar-chart",
+                },
 				{
 					"type": "report",
 					"name":"General Ledger",

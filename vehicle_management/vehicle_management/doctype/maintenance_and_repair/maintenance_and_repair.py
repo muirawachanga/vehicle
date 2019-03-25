@@ -38,6 +38,19 @@ class Maintenanceandrepair(Document):
 		self.validate_maintenance_detail()
 		self.validate_dates_with_periodicity()
 
+	def create_vehicle(self):
+		if self.vehicle_contract:
+			vehicle = frappe.get_value('Assign and contribution contract', self.vehicle_contract, 'vehicle')
+			if vehicle:
+				self.set('vehicle', vehicle)
+
+	def create_vehicle_contract(self):
+		if self.vehicle:
+			vehicle_contract = frappe.get_value('Assign and contribution contract', self.vehicle, 'name')
+			if vehicle_contract:
+				frappe.msgprint(_(vehicle_contract))
+				self.set('vehicle_contract', vehicle_contract)
+
 	def validate_maintenance_detail(self):
 		if not self.get('maintenance_checks'):
 			throw(_("Please enter Maintaince Details first"))
