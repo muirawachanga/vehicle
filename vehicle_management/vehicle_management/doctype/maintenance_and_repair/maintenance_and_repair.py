@@ -52,21 +52,22 @@ class Maintenanceandrepair(Document):
 				self.set('vehicle_contract', vehicle_contract)
 
 	def validate_maintenance_detail(self):
-		if not self.get('maintenance_checks'):
-			throw(_("Please enter Maintaince Details first"))
+		if self.maintenance_check_button:
+			if not self.get('maintenance_checks'):
+				throw(_("Please enter Maintaince Details first"))
 
-		for d in self.get('maintenance_checks'):
-			if not d.item_code:
-				throw(_("Please select item code"))
-			elif not d.start_date or not d.end_date:
-				throw(_("Please select Start Date and End Date for Item {0}".format(d.item_code)))
-			elif not d.no_of_visits:
-				throw(_("Please mention no of visits required"))
-			# elif not d.sales_person:
-			# 	throw(_("Please select Incharge Person's name"))
+			for d in self.get('maintenance_checks'):
+				if not d.item_code:
+					throw(_("Please select item code"))
+				elif not d.start_date or not d.end_date:
+					throw(_("Please select Start Date and End Date for Item {0}".format(d.item_code)))
+				elif not d.no_of_visits:
+					throw(_("Please mention no of visits required"))
+				# elif not d.sales_person:
+				# 	throw(_("Please select Incharge Person's name"))
 
-			if getdate(d.start_date) >= getdate(d.end_date):
-				throw(_("Start date should be less than end date for Item {0}").format(d.item_code))
+				if getdate(d.start_date) >= getdate(d.end_date):
+					throw(_("Start date should be less than end date for Item {0}").format(d.item_code))
 
 	def create_schedule_list(self, start_date, end_date, no_of_visit):
 		schedule_list = []
