@@ -77,7 +77,7 @@ def get_data():
 			"items": [
                 {
                     "type": "report",
-                    "name": "Daily Summary",
+                    "name": "Daily summary",
                     "doctype": "Assign and contribution contract",
                     "is_query_report": True,
                 },
