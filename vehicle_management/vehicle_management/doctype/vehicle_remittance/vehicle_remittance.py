@@ -247,10 +247,10 @@ class VehicleRemittance(Document):
         self.calculate_commision()
 
     def before_cancel(self):
-        rpv = frappe.get_list('Remittance Payment Voucher', filters=[["landlord_remittance", "=", self.name],
+        rpv = frappe.get_list('Remittance Payment', filters=[["landlord_remittance", "=", self.name],
                                                                      ["docstatus", "!=", 2]])
         for r in rpv:
-            remittance_voucher = frappe.get_doc("Remittance Payment Voucher", r.name)
+            remittance_voucher = frappe.get_doc("Remittance Payment", r.name)
             if remittance_voucher.docstatus == 1:
                 remittance_voucher.cancel()
             else:

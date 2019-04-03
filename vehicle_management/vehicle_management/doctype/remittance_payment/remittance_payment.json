@@ -722,7 +722,7 @@
    "label": "Amended From", 
    "length": 0, 
    "no_copy": 1, 
-   "options": "Remittance Payment Voucher", 
+   "options": "Remittance Payment",
    "permlevel": 0, 
    "print_hide": 1, 
    "print_hide_if_no_value": 0, 

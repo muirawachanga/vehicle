@@ -2,6 +2,15 @@
  {
   "docstatus": 0, 
   "doctype": "Workflow State", 
+  "icon": "", 
+  "modified": "2019-03-19 22:49:23.179660", 
+  "name": "Reassigned", 
+  "style": "", 
+  "workflow_state_name": "Reassigned"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Workflow State", 
   "icon": "remove", 
   "modified": "2016-03-05 01:04:39.407579", 
   "name": "Rejected", 
@@ -52,14 +61,5 @@
   "name": "Cancelled", 
   "style": "Inverse", 
   "workflow_state_name": "Cancelled"
- }, 
- {
-  "docstatus": 0, 
-  "doctype": "Workflow State", 
-  "icon": "", 
-  "modified": "2019-03-19 22:49:23.179660", 
-  "name": "Reassigned", 
-  "style": "", 
-  "workflow_state_name": "Reassigned"
  }
 ]

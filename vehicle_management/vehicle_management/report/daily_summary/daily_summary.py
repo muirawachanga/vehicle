@@ -32,13 +32,14 @@ def get_data(conditions, filters):
 	return vehicle_details
 
 def get_conditions(filters):
-	conditions = "`tabAssign and contribution contract`.status = 'Active'"
+	# conditions = "`tabAssign and contribution contract`.status = 'Active'"
+	conditions = "`tabVehicle Details`.vehicle_status = ('%s')" % filters.get("status")
 	if filters.get("start_date"):
 		conditions += " and `tabAssign and contribution contract`.start_date >= date(%(start_date)s)"
 	if filters.get("end_date"):
 		conditions += " and `tabAssign and contribution contract`.end_date <= date(%(end_date)s)"
-	if filters.get("status"):
-		conditions += "and `tabVehicle Details`.vehicle_status = ('%s')" % filters.get("status")
+	# if filters.get("status"):
+	# 	conditions += "and `tabVehicle Details`.vehicle_status = ('%s')" % filters.get("status")
 	match_conditions = build_match_conditions("Assign and contribution contract")
 	if match_conditions:
 		conditions += " and %s" % match_conditions

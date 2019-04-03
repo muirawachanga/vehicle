@@ -2,6 +2,13 @@
  {
   "docstatus": 0, 
   "doctype": "Workflow Action", 
+  "modified": "2019-03-19 23:01:36.049608", 
+  "name": "Reassign", 
+  "workflow_action_name": "Reassign"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Workflow Action", 
   "modified": "2016-03-05 01:04:39.416673", 
   "name": "Approve", 
   "workflow_action_name": "Approve"
@@ -40,12 +47,5 @@
   "modified": "2016-09-09 22:12:35.414177", 
   "name": "Activate", 
   "workflow_action_name": "Activate"
- }, 
- {
-  "docstatus": 0, 
-  "doctype": "Workflow Action", 
-  "modified": "2019-03-19 23:01:36.049608", 
-  "name": "Reassign", 
-  "workflow_action_name": "Reassign"
  }
 ]
