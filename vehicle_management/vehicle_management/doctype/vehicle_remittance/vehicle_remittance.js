@@ -45,15 +45,15 @@ frappe.ui.form.on('Vehicle Remittance', {
     },
 
     owner_contract: function(frm) {
-        return frappe.call({
-            method: "init_values",
-            doc: frm.doc,
-            callback: function(r, rt) {
-                frm.fields_dict.load_remittance_data.$input
-                && frm.fields_dict.load_remittance_data.$input.addClass("btn-primary");
-                frm.refresh()
-            }
-        });
+//        return frappe.call({
+//            method: "init_values",
+//            doc: frm.doc,
+//            callback: function(r, rt) {
+//                frm.fields_dict.load_remittance_data.$input
+//                && frm.fields_dict.load_remittance_data.$input.addClass("btn-primary");
+//                frm.refresh()
+//            }
+//        });
     },
 
     include_unpaid_invoices: function(frm) {

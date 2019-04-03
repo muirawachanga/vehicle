@@ -124,11 +124,12 @@ def make_invoice(amount, mode_of_payment, name=None):
 	source = frappe.get_doc('Maintenance and repair', name)
 	if source:
 		if source.company_pay:
-			frappe.msgprint(_('The company pay is set'))
 			invoice = frappe.new_doc('Purchase Invoice')
-			# default_customer = load_configuration('default_customer_for_invoice')
+			default_customer = load_configuration('default_customer_for_invoice')
 			if not source.driver_employee and not source.driver_customer:
-				frappe.throw(_('Please set default customer in the vehicle management Settings'))
+				source.driver_customer = default_customer
+				if not default_customer:
+					frappe.throw(_('Please set default customer in the vehicle management Settings'))
 			if source.driver_customer:
 				invoice.driver_customer = source.driver_customer
 			else:
@@ -176,3 +177,9 @@ def sync_items(invoice, items, amount, cost_center, expense_account):
 			uom= 'Nos'
 		))
 	return invoice.as_dict()
+
+def load_configuration(name, default=None):
+	val = frappe.db.get_single_value('Vehicle Management Setting', name)
+	if val is None:
+		val = default
+	return val

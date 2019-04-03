@@ -15,29 +15,29 @@ class VehicleRemittance(Document):
     # def __init__(self, arg1, arg2=None):
     #     super(LandlordRemittance, self).__init__(arg1, arg2)
 
-    def init_values(self):
-        # Get start end dates for collections and expenses based on min max invoice dates not remitted.
-        coll_dates = frappe.db.sql("""select min(ti.posting_date), max(ti.posting_date) from
-                                            `tabSales Invoice` ti, `tabOwner Contract` td, `tabProperty` tp, `tabProperty Unit` tu,
-                                            `tabTenancy Contract` tc where ti.docstatus = 1 and ti.tenancy_contract = tc.name and tc.property_unit = tu.name
-                                            and tu.property = tp.name and td.property = tp.name and td.name = '%s' and ti.name not in
-                                            (select lc.invoice from `tabLandlord Collection Invoices` lc, `tabLandlord Remittance` lr where lr.owner_contract = '%s'
-                                            and lr.name = lc.parent and lc.docstatus <> 2);
-                                            """ % (self.owner_contract, self.owner_contract), as_dict=0)
-
-        exp_dates = frappe.db.sql("""select  min(ti.posting_date), max(ti.posting_date) from
-                                            `tabPurchase Invoice` ti, `tabOwner Contract` td, `tabProperty` tp where ti.owner_contract = td.name and
-                                            td.property = tp.name and td.name = '%s' and ti.name not in
-                                            (select lei.invoice from `tabLandlord Expense Invoices` lei, `tabLandlord Remittance` lr
-                                            where lr.owner_contract = '%s' and lr.name = lei.parent and lei.docstatus <> 2)
-                                            order by ti.posting_date;
-                                            """ % (self.owner_contract, self.owner_contract), as_dict=0)
-        if coll_dates[0][0]:
-            self.set("collection_period_start", coll_dates[0][0])
-            self.set("collection_period_end", coll_dates[0][1])
-        if exp_dates[0][0]:
-            self.set("expense_period_start", exp_dates[0][0])
-            self.set("expense_period_end", exp_dates[0][1])
+    # def init_values(self):
+    #     # Get start end dates for collections and expenses based on min max invoice dates not remitted.
+    #     coll_dates = frappe.db.sql("""select min(ti.posting_date), max(ti.posting_date) from
+    #                                         `tabSales Invoice` ti, `tabOwner Contract` td, `tabProperty` tp, `tabProperty Unit` tu,
+    #                                         `tabTenancy Contract` tc where ti.docstatus = 1 and ti.tenancy_contract = tc.name and tc.property_unit = tu.name
+    #                                         and tu.property = tp.name and td.property = tp.name and td.name = '%s' and ti.name not in
+    #                                         (select lc.invoice from `tabLandlord Collection Invoices` lc, `tabLandlord Remittance` lr where lr.owner_contract = '%s'
+    #                                         and lr.name = lc.parent and lc.docstatus <> 2);
+    #                                         """ % (self.owner_contract, self.owner_contract), as_dict=0)
+    #
+    #     exp_dates = frappe.db.sql("""select  min(ti.posting_date), max(ti.posting_date) from
+    #                                         `tabPurchase Invoice` ti, `tabOwner Contract` td, `tabProperty` tp where ti.owner_contract = td.name and
+    #                                         td.property = tp.name and td.name = '%s' and ti.name not in
+    #                                         (select lei.invoice from `tabLandlord Expense Invoices` lei, `tabLandlord Remittance` lr
+    #                                         where lr.owner_contract = '%s' and lr.name = lei.parent and lei.docstatus <> 2)
+    #                                         order by ti.posting_date;
+    #                                         """ % (self.owner_contract, self.owner_contract), as_dict=0)
+    #     if coll_dates[0][0]:
+    #         self.set("collection_period_start", coll_dates[0][0])
+    #         self.set("collection_period_end", coll_dates[0][1])
+    #     if exp_dates[0][0]:
+    #         self.set("expense_period_start", exp_dates[0][0])
+    #         self.set("expense_period_end", exp_dates[0][1])
         # Active and Vacant units
         #
         # active = frappe.db.sql("""select count(*) from `tabOwner Contract` td, `tabProperty` tp, `tabProperty Unit` tu, `tabTenancy Contract` tc where
@@ -226,8 +226,8 @@ class VehicleRemittance(Document):
         collection_invoices = frappe.db.sql(inv_query, as_dict=1)
 
         expense_invoices = frappe.db.sql("""select ti.name as invoice_name, ti.posting_date, ti.grand_total, ti.supplier_name from
-                                            `tabPurchase Invoice` ti, `tabVehicle Owner Contract` td, `tabProperty` tp where ti.vehicle = td.vehicle and
-                                            td.property = tp.name and td.name = '%s' and ti.posting_date between '%s' and '%s' and ti.docstatus = 1 and ti.name not in
+                                            `tabPurchase Invoice` ti, `tabVehicle Owner Contract` td, `tabMaintenance and repair` tp where ti.maintenance_and_repair = tp.name and
+                                            tp.vehicle = tp.vehicle and td.name = '%s' and ti.posting_date between '%s' and '%s' and ti.docstatus = 1 and ti.name not in
                                             (select lei.invoice from `tabVehicle Expense Invoices` lei, `tabVehicle Remittance` lr
                                             where lr.owner_contract = '%s' and lr.name = lei.parent and lei.docstatus <> 2)
                                             order by ti.supplier_name, ti.posting_date;
