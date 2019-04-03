@@ -5,7 +5,7 @@
   "dt": "Journal Entry", 
   "modified": "2016-07-10 01:53:16.828297", 
   "name": "Journal Entry-Client", 
-  "script": "frappe.ui.form.on(\"Journal Entry\", {\n    refresh: function(frm) {\n        //frm.fields_dict[\"reference_type\"].df.options = frm.fields_dict[\"reference_type\"].df.options + \"\\nRemittance Payment\";\n        var df = frappe.meta.get_docfield(\"Journal Entry Account\",\"reference_type\", frm.doc.name);\n        df.options = df.options + \"\\nRemittance Payment Voucher\";\n    }\n});\n\nfrappe.ui.form.on(\"Journal Entry Account\", \"reference_type\", function(frm, cdt, cdn){\n  //console.log(cdt);\n//Check Journal Entry.js for how to set query.\n});",
+  "script": "frappe.ui.form.on(\"Journal Entry\", {\n    refresh: function(frm) {\n        //frm.fields_dict[\"reference_type\"].df.options = frm.fields_dict[\"reference_type\"].df.options + \"\\nRemittance Payment\";\n        var df = frappe.meta.get_docfield(\"Journal Entry Account\",\"reference_type\", frm.doc.name);\n        df.options = df.options + \"\\nRemittance Payment\";\n    }\n});\n\nfrappe.ui.form.on(\"Journal Entry Account\", \"reference_type\", function(frm, cdt, cdn){\n  //console.log(cdt);\n//Check Journal Entry.js for how to set query.\n});",
   "script_type": "Client"
  }
 ]
