@@ -117,7 +117,7 @@ frappe.ui.form.on('Assign and contribution contract', {
         })
     }
 
-    });
+});
     frappe.ui.form.on("Contribution", {
     	contributions_remove: function(frm) {
         	calculate_total_amount(frm);
@@ -126,7 +126,7 @@ frappe.ui.form.on('Assign and contribution contract', {
             calculate_total_amount(frm);
         }
 
-    });
+    })
 cur_frm.fields_dict['vehicle'].get_query = function (doc, cdt, cdn) {
   return {
     filters: {
