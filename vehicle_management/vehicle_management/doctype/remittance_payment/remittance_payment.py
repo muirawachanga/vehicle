@@ -111,11 +111,11 @@ class RemittancePayment (Document):
         if self.net_remittance_amount <= 0:
             frappe.throw("Net Remittance amount is invalid. Cannot be zero or less.")
 
-        if self.management_fee < 0:
-            frappe.throw("Management Fee amount is invalid. Cannot be less than zero.")
-
-        if self.deductible_expenses < 0:
-            frappe.throw("Deductible Expenses amount is invalid. Cannot be less than zero.")
+        # if self.management_fee < 0:
+        #     frappe.throw("Management Fee amount is invalid. Cannot be less than zero.")
+        #
+        # if self.deductible_expenses < 0:
+        #     frappe.throw("Deductible Expenses amount is invalid. Cannot be less than zero.")
 
     def create_deductions_invoice(self, adv_journal_entry):
         if self.get("deductible_expenses") == 0:
@@ -151,7 +151,7 @@ class RemittancePayment (Document):
         inv.submit()
 
     def create_management_fee_invoice(self, adv_journal_entry):
-        if self.get("management_fee") == 0:
+        if self.get("management_fee") == 0 or self.get("management_fee") < 0:
             return
         inv = frappe.new_doc('Sales Invoice')
         cust = frappe.get_doc('Customer', self.get_customer_name())
@@ -182,21 +182,22 @@ class RemittancePayment (Document):
         inv.submit()
 
     def alloc_advances(self, inv, adv_je):
-        inv.run_method("set_advances")
-        # set_advance call above does not allocate if we have no sales order
-        # linked to the Advance Journal Entry. So we do it now... we want the advance coming from the advance
-        # payment journal we just made
-        adv = next((ad for ad in inv.get('advances') if ad.get('reference_name') == adv_je.name), None)
-        if not adv:
-            frappe.throw(_("Advance Payment allocation error during Remittance Payment processing. "
-                           "Please contact support."))
-        adv.set('allocated_amount', flt(inv.get('grand_total')))
-        return adv
+        if self.management_fee > 0:
+            inv.run_method("set_advances")
+            # set_advance call above does not allocate if we have no sales order
+            # linked to the Advance Journal Entry. So we do it now... we want the advance coming from the advance
+            # payment journal we just made
+            adv = next((ad for ad in inv.get('advances') if ad.get('reference_name') == adv_je.name), None)
+            if not adv:
+                frappe.throw(_("Advance Payment allocation error during Remittance Payment processing. "
+                               "Please contact support."))
+            adv.set('allocated_amount', flt(inv.get('grand_total')))
+            return adv
 
     def create_advance(self):
         journal_entry = frappe.new_doc('Journal Entry')
         journal_amt = flt(self.get("management_fee") + self.get('deductible_expenses'))
-        if journal_amt == 0.0:
+        if journal_amt == 0.0 or journal_amt < 0:
             return
         cr_entry = journal_entry.append("accounts", {})
         cr_entry.account = get_party_account('Customer', self.get_customer_name(), journal_entry.company)

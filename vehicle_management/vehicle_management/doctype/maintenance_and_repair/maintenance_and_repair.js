@@ -3,11 +3,17 @@
 
 frappe.ui.form.on('Maintenance and repair', {
 	refresh: function(frm) {
-
 	    if(frm.doc.company_pay){
             frm.add_custom_button(__("Create the repair invoice"), function() {
                 frm.events.make_invoice(frm)
             }).addClass("btn-primary")
+
+            frm.add_custom_button(__('Open Invoice'), function() {
+                frappe.route_options = {
+                    "maintenance_and_repair": frm.doc.name
+                };
+                frappe.set_route("List", "Sales Invoice");
+            }, "fa fa-table");
 
         }
 	},

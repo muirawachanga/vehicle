@@ -48,11 +48,11 @@ def get_data():
             "label": _("Vehicle Overview"),
             "icon": "icon-star",
             "items": [
-                {
-                    "type": "doctype",
-                    "name": "Maintenance Visits",
-                    "description": _("Maintenance Visits of the vehicle booking in the system")
-                },
+               # {
+               #   "type": "doctype",
+               #    "name": "Maintenance Visits",
+               #    "description": _("Maintenance Visits of the vehicle booking in the system")
+               # },
                 {
                     "type": "doctype",
                     "name": "Vehicle Owner Contract",

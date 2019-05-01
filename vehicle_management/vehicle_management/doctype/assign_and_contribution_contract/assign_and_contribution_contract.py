@@ -70,7 +70,7 @@ def validate_dates(self):
 		start_date = getdate(self.start_date)
 		end_date = getdate(self.end_date)
 		diff = date_diff(end_date, start_date) + 1
-		if start_date_inv <= start_date <= end_date_inv:
+		if start_date_inv <= start_date <= end_date_inv and not self.termination_date:
 			self.set('start_date', add_days(end_date_inv, 1))
 			self.set('end_date', add_days(end_date_inv, diff))
 			frappe.msgprint(_('The dates correspond from what is in the invoice, dates has been regenerated'))
@@ -108,6 +108,7 @@ def make_invoice(vehicle, amount, mode_of_payment, name=None, customer=None):
 		invoice.end_date = getdate(source.end_date)
 		invoice.vehicle = source.vehicle
 		invoice.driver = source.customer_name or source.employee_name
+		invoice.contract = source.name
 		# invoice.run_method("set_missing_values")
 		invoice.save()
 		invoice.submit()

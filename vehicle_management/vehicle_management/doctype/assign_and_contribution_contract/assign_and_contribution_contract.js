@@ -9,7 +9,11 @@ frappe.ui.form.on('Assign and contribution contract', {
 	    if (frm.doc.status == 'Active' || frm.doc.status == 'Suspended') {
             frm.add_custom_button(__("Create Invoice"), function() {
                 frm.events.make_invoice(frm)
-            }).addClass("btn-primary");
+            }).addClass("btn-primary")
+
+        }
+        if(frm.doc.termination_date){
+            cur_frm.clear_custom_buttons()
         }
         if (frm.doc.status == 'Reassigned' || frm.doc.status == 'Terminated' || frm.doc.status == 'Rejected'){
             return frappe.call({
@@ -18,7 +22,14 @@ frappe.ui.form.on('Assign and contribution contract', {
             })
 
         }
-
+        if (frm.doc.status == 'Active'){
+            frm.add_custom_button(__('Open Invoice'), function() {
+                frappe.route_options = {
+                    "contract": frm.doc.name
+                };
+                frappe.set_route("List", "Sales Invoice");
+            }, "fa fa-table");
+        }
     },
     validate: function(frm){
         if (!frm.doc.total_amount){

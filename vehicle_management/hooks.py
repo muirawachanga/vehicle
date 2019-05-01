@@ -59,7 +59,7 @@ fixtures = [
         "filters":[["name", "in", ['Sales Invoice-remittance_references', 'Assign and contribution contract-workflow_state', 'Vehicle Owner Contract-workflow_state',
                                    'Purchase Invoice-vehicle_insured', 'Purchase Invoice-maintenance_and_repair', 'Purchase Invoice-insurance_policy', 'Purchase Invoice-driver_employee',
                                    'Purchase Invoice-driver_customer', 'Purchase Invoice-start_date', 'Purchase Invoice-vehicle', 'Purchase Invoice-end_date', 'Sales Invoice-column_break',
-                                   'Sales Invoice-date_start', 'Sales Invoice-end_date', 'Sales Invoice-driver', 'Sales Invoice-vehicle', 'Sales Invoice-vehicle_details']]]
+                                   'Sales Invoice-date_start', 'Sales Invoice-end_date', 'Sales Invoice-driver', 'Sales Invoice-vehicle', 'Sales Invoice-vehicle_details', 'Sales Invoice-contract']]]
     },
     {
         "dt": "Custom Script",
