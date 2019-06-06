@@ -7,11 +7,13 @@
   "modified": "2019-03-12 22:45:47.214383", 
   "name": "Vehicle Owner Contract", 
   "override_status": 0, 
+  "send_email_alert": 0, 
   "states": [
    {
     "allow_edit": "System Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "New", 
     "update_field": "contract_status", 
     "update_value": "New"
@@ -20,6 +22,7 @@
     "allow_edit": "System Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Active", 
     "update_field": "contract_status", 
     "update_value": "Active"
@@ -28,6 +31,7 @@
     "allow_edit": "System Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Suspended", 
     "update_field": "contract_status", 
     "update_value": "Suspended"
@@ -36,6 +40,7 @@
     "allow_edit": "System Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Terminated", 
     "update_field": "contract_status", 
     "update_value": "Terminated"
@@ -44,6 +49,7 @@
     "allow_edit": "System Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Cancelled", 
     "update_field": "contract_status", 
     "update_value": "Cancelled"
@@ -52,6 +58,7 @@
     "allow_edit": "System Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Rejected", 
     "update_field": "contract_status", 
     "update_value": "Rejected"
@@ -60,31 +67,41 @@
   "transitions": [
    {
     "action": "Approve", 
+    "allow_self_approval": 0, 
     "allowed": "System Manager", 
+    "condition": null, 
     "next_state": "Active", 
     "state": "New"
    }, 
    {
     "action": "Reject", 
+    "allow_self_approval": 0, 
     "allowed": "System Manager", 
+    "condition": null, 
     "next_state": "Rejected", 
     "state": "New"
    }, 
    {
     "action": "Suspend", 
+    "allow_self_approval": 0, 
     "allowed": "System Manager", 
+    "condition": null, 
     "next_state": "Suspended", 
     "state": "Active"
    }, 
    {
     "action": "Terminate", 
+    "allow_self_approval": 0, 
     "allowed": "System Manager", 
+    "condition": null, 
     "next_state": "Terminated", 
     "state": "Active"
    }, 
    {
     "action": "Cancel", 
+    "allow_self_approval": 0, 
     "allowed": "System Manager", 
+    "condition": null, 
     "next_state": "Cancelled", 
     "state": "Active"
    }
@@ -100,11 +117,13 @@
   "modified": "2019-03-19 23:11:28.199901", 
   "name": "Assign Vehicle", 
   "override_status": 0, 
+  "send_email_alert": 0, 
   "states": [
    {
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "New", 
     "update_field": "status", 
     "update_value": "New"
@@ -113,6 +132,7 @@
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Active", 
     "update_field": "status", 
     "update_value": "Active"
@@ -121,6 +141,7 @@
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Reassigned", 
     "update_field": "status", 
     "update_value": "Reassigned"
@@ -129,6 +150,7 @@
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Suspended", 
     "update_field": "status", 
     "update_value": "Suspended"
@@ -137,6 +159,7 @@
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Terminated", 
     "update_field": "status", 
     "update_value": "Terminated"
@@ -145,6 +168,7 @@
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Cancelled", 
     "update_field": "status", 
     "update_value": "Cancelled"
@@ -153,6 +177,7 @@
     "allow_edit": "Fleet Manager", 
     "doc_status": "0", 
     "message": null, 
+    "next_action_email_template": null, 
     "state": "Rejected", 
     "update_field": "status", 
     "update_value": "Rejected"
@@ -161,43 +186,57 @@
   "transitions": [
    {
     "action": "Approve", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Active", 
     "state": "New"
    }, 
    {
     "action": "Reject", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Rejected", 
     "state": "New"
    }, 
    {
     "action": "Suspend", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Suspended", 
     "state": "Active"
    }, 
    {
     "action": "Terminate", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Terminated", 
     "state": "Active"
    }, 
    {
     "action": "Reassign", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Reassigned", 
     "state": "Active"
    }, 
    {
     "action": "Activate", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Active", 
     "state": "Suspended"
    }, 
    {
     "action": "Activate", 
+    "allow_self_approval": 0, 
     "allowed": "Fleet Manager", 
+    "condition": null, 
     "next_state": "Active", 
     "state": "Reassigned"
    }

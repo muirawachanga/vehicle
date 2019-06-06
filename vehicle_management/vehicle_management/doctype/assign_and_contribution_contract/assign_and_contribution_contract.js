@@ -6,13 +6,7 @@ frappe.ui.form.on('Assign and contribution contract', {
 	    if(frm.doc.__islocal){
 	        frm.trigger('calculate_date_amount')
 	    }
-	    if (frm.doc.status == 'Active' || frm.doc.status == 'Suspended') {
-            frm.add_custom_button(__("Create Invoice"), function() {
-                frm.events.make_invoice(frm)
-            }).addClass("btn-primary")
-
-        }
-        if(frm.doc.termination_date){
+        if(frm.doc.termination_date && frm.doc.status=='Terminated'){
             cur_frm.clear_custom_buttons()
         }
         if (frm.doc.status == 'Reassigned' || frm.doc.status == 'Terminated' || frm.doc.status == 'Rejected'){
@@ -29,6 +23,12 @@ frappe.ui.form.on('Assign and contribution contract', {
                 };
                 frappe.set_route("List", "Sales Invoice");
             }, "fa fa-table");
+        }
+        if (frm.doc.status == 'Active' || frm.doc.status == 'Suspended' || frm.doc.status == 'Reassigned') {
+            frm.add_custom_button(__("Create Invoice"), function() {
+                frm.events.make_invoice(frm)
+            }).addClass("btn-primary")
+
         }
     },
     validate: function(frm){
@@ -77,10 +77,14 @@ frappe.ui.form.on('Assign and contribution contract', {
         if(frm.doc.start_date && frm.doc.end_date){
             var start_date = moment(frm.doc.start_date)
             var end_date = moment(frm.doc.end_date)
-            var diff = end_date.diff(start_date, 'days') + 1
+            var diff = moment.duration(end_date.diff(start_date))
+            var hours = (diff.asHours()/24).toPrecision(2)
             if(frm.doc.amount_per_day){
-                var total_amount = diff * frm.doc.amount_per_day
-                var msg = __('The number of days to be billed are: ') + diff
+                if (hours < 1){
+                    hours  = 1
+                }
+                var total_amount = hours * frm.doc.amount_per_day
+                var msg = __('The number of days to be billed are: ') + hours
                 frappe.msgprint(msg)
                 frm.set_value('total_amount_expected', total_amount)
                 frm.set_value('contributions', [])

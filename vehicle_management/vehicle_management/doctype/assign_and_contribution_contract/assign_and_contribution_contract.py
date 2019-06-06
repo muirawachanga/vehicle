@@ -5,7 +5,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import _
-from frappe.utils import date_diff, add_days, flt, nowdate, getdate
+from frappe.utils import date_diff, add_days, flt, nowdate, getdate, time_diff_in_hours, get_datetime
 from frappe.model.document import Document
 import calendar
 
@@ -65,12 +65,12 @@ def validate_dates(self):
 
 	last_inv = get_last_tc_invoice(self.vehicle)
 	if last_inv:
-		start_date_inv = getdate(last_inv.get('start_date'))
-		end_date_inv = getdate(last_inv.get('end_date'))
-		start_date = getdate(self.start_date)
-		end_date = getdate(self.end_date)
+		start_date_inv = get_datetime(last_inv.get('start_date'))
+		end_date_inv = get_datetime(last_inv.get('end_date'))
+		start_date = get_datetime(self.start_date)
+		end_date = get_datetime(self.end_date)
 		diff = date_diff(end_date, start_date) + 1
-		if start_date_inv <= start_date <= end_date_inv and not self.termination_date:
+		if start_date_inv <= start_date <= end_date_inv and self.status != 'Terminated':
 			self.set('start_date', add_days(end_date_inv, 1))
 			self.set('end_date', add_days(end_date_inv, diff))
 			frappe.msgprint(_('The dates correspond from what is in the invoice, dates has been regenerated'))
@@ -102,7 +102,7 @@ def make_invoice(vehicle, amount, mode_of_payment, name=None, customer=None):
 		if not item:
 			frappe.throw(_('Please set default item in the vehicle management Settings'))
 		invoice.append('items', dict(item_code = item, qty = 1, rate = amount, cost_center= get_cost_center(vehicle)))
-		invoice.is_pos = 1
+		# invoice.is_pos = 1
 		invoice.append('payments', dict(mode_of_payment=mode_of_payment, amount=amount))
 		invoice.date_start = getdate(source.start_date)
 		invoice.end_date = getdate(source.end_date)
