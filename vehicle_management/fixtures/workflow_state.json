@@ -5,6 +5,9 @@
   "icon": "", 
   "modified": "2019-03-19 22:49:23.179660", 
   "name": "Reassigned", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "style": "", 
   "workflow_state_name": "Reassigned"
  }, 
@@ -14,6 +17,9 @@
   "icon": "remove", 
   "modified": "2016-03-05 01:04:39.407579", 
   "name": "Rejected", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "style": "Danger", 
   "workflow_state_name": "Rejected"
  }, 
@@ -21,17 +27,11 @@
   "docstatus": 0, 
   "doctype": "Workflow State", 
   "icon": "", 
-  "modified": "2016-03-08 15:11:51.137346", 
-  "name": "New", 
-  "style": "Warning", 
-  "workflow_state_name": "New"
- }, 
- {
-  "docstatus": 0, 
-  "doctype": "Workflow State", 
-  "icon": "", 
   "modified": "2016-03-07 21:45:11.697887", 
   "name": "Active", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "style": "Success", 
   "workflow_state_name": "Active"
  }, 
@@ -41,6 +41,9 @@
   "icon": "", 
   "modified": "2016-03-08 15:11:26.993046", 
   "name": "Suspended", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "style": "Danger", 
   "workflow_state_name": "Suspended"
  }, 
@@ -50,6 +53,9 @@
   "icon": "", 
   "modified": "2016-03-07 21:57:30.985833", 
   "name": "Terminated", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "style": "Info", 
   "workflow_state_name": "Terminated"
  }, 
@@ -57,8 +63,23 @@
   "docstatus": 0, 
   "doctype": "Workflow State", 
   "icon": "", 
-  "modified": "2016-03-08 15:11:04.937606", 
+  "modified": "2019-06-23 22:17:00.594386", 
+  "name": "New", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
+  "style": "Info", 
+  "workflow_state_name": "New"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Workflow State", 
+  "icon": "", 
+  "modified": "2019-06-23 22:26:51.256019", 
   "name": "Cancelled", 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "style": "Inverse", 
   "workflow_state_name": "Cancelled"
  }

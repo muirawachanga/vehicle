@@ -8,5 +8,6 @@ import unittest
 
 # test_records = frappe.get_test_records('Landlord Remittance')
 
+
 class TestLandlordRemittance(unittest.TestCase):
     pass

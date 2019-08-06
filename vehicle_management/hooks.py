@@ -5,7 +5,9 @@ from . import __version__ as app_version
 app_name = "vehicle_management"
 app_title = "Vehicle Management"
 app_publisher = "stephen"
-app_description = "This app help anyone with a vehicle to manages for lease or normal use"
+app_description = (
+    "This app help anyone with a vehicle to manages for lease or normal use"
+)
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
 app_email = "wachangasteve@gmail.com"
@@ -39,7 +41,7 @@ app_license = "MIT"
 
 # website user home page (by Role)
 # role_home_page = {
-#	"Role": "home_page"
+# 	"Role": "home_page"
 # }
 
 # Website user home page (by function)
@@ -56,27 +58,74 @@ app_license = "MIT"
 fixtures = [
     {
         "dt": "Custom Field",
-        "filters":[["name", "in", ['Sales Invoice-remittance_references', 'Assign and contribution contract-workflow_state', 'Vehicle Owner Contract-workflow_state',
-                                   'Purchase Invoice-vehicle_insured', 'Purchase Invoice-maintenance_and_repair', 'Purchase Invoice-insurance_policy', 'Purchase Invoice-driver_employee',
-                                   'Purchase Invoice-driver_customer', 'Purchase Invoice-start_date', 'Purchase Invoice-vehicle', 'Purchase Invoice-end_date', 'Sales Invoice-column_break',
-                                   'Sales Invoice-date_start', 'Sales Invoice-end_date', 'Sales Invoice-driver', 'Sales Invoice-vehicle', 'Sales Invoice-vehicle_details', 'Sales Invoice-contract']]]
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Sales Invoice-remittance_references",
+                    "Assign and contribution contract-workflow_state",
+                    "Vehicle Owner Contract-workflow_state",
+                    "Purchase Invoice-vehicle_insured",
+                    "Purchase Invoice-maintenance_and_repair",
+                    "Purchase Invoice-insurance_policy",
+                    "Purchase Invoice-driver_employee",
+                    "Purchase Invoice-driver_customer",
+                    "Purchase Invoice-start_date",
+                    "Purchase Invoice-vehicle",
+                    "Purchase Invoice-end_date",
+                    "Sales Invoice-column_break",
+                    "Sales Invoice-date_start",
+                    "Sales Invoice-end_date",
+                    "Sales Invoice-driver",
+                    "Sales Invoice-vehicle",
+                    "Sales Invoice-vehicle_details",
+                    "Sales Invoice-contract",
+                ],
+            ]
+        ],
     },
-    {
-        "dt": "Custom Script",
-        "filters":[["name", "in", ['Journal Entry-Client']]]
-    },
+    {"dt": "Custom Script", "filters": [["name", "in", ["Journal Entry-Client"]]]},
     {
         "dt": "Workflow",
-        "filters":[["name", "in", ['Assign Vehicle', 'Vehicle Owner Contract']]]
+        "filters": [["name", "in", ["Assign Vehicle", "Vehicle Owner Contract"]]],
     },
     {
         "dt": "Workflow Action",
-        "filters":[["name", "in", ['Reassign', 'Activate', 'Cancel', 'Suspend','Terminate','Reject', 'Approve']]]
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Reassign",
+                    "Activate",
+                    "Cancel",
+                    "Suspend",
+                    "Terminate",
+                    "Reject",
+                    "Approve",
+                ],
+            ]
+        ],
     },
     {
         "dt": "Workflow State",
-        "filters":[["name", "in", ['Reassigned', 'New', 'Active', 'Terminated', 'Suspended', 'Rejected', 'Cancelled']]]
-    }
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Reassigned",
+                    "New",
+                    "Active",
+                    "Terminated",
+                    "Suspended",
+                    "Rejected",
+                    "Cancelled",
+                ],
+            ]
+        ],
+    },
 ]
 
 
@@ -110,7 +159,7 @@ fixtures = [
 # 		"on_update": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
-#	}
+# 	}
 # }
 
 # Scheduled Tasks
@@ -145,4 +194,3 @@ fixtures = [
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "vehicle_management.event.get_events"
 # }
-

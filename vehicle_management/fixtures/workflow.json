@@ -7,6 +7,9 @@
   "modified": "2019-03-12 22:45:47.214383", 
   "name": "Vehicle Owner Contract", 
   "override_status": 0, 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "send_email_alert": 0, 
   "states": [
    {
@@ -14,6 +17,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "New", 
     "update_field": "contract_status", 
     "update_value": "New"
@@ -23,6 +29,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Active", 
     "update_field": "contract_status", 
     "update_value": "Active"
@@ -32,6 +41,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Suspended", 
     "update_field": "contract_status", 
     "update_value": "Suspended"
@@ -41,6 +53,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Terminated", 
     "update_field": "contract_status", 
     "update_value": "Terminated"
@@ -50,6 +65,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Cancelled", 
     "update_field": "contract_status", 
     "update_value": "Cancelled"
@@ -59,6 +77,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Rejected", 
     "update_field": "contract_status", 
     "update_value": "Rejected"
@@ -71,6 +92,9 @@
     "allowed": "System Manager", 
     "condition": null, 
     "next_state": "Active", 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "New"
    }, 
    {
@@ -79,6 +103,9 @@
     "allowed": "System Manager", 
     "condition": null, 
     "next_state": "Rejected", 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "New"
    }, 
    {
@@ -87,6 +114,9 @@
     "allowed": "System Manager", 
     "condition": null, 
     "next_state": "Suspended", 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Active"
    }, 
    {
@@ -95,6 +125,9 @@
     "allowed": "System Manager", 
     "condition": null, 
     "next_state": "Terminated", 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Active"
    }, 
    {
@@ -103,6 +136,9 @@
     "allowed": "System Manager", 
     "condition": null, 
     "next_state": "Cancelled", 
+    "parent": "Vehicle Owner Contract", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Active"
    }
   ], 
@@ -117,6 +153,9 @@
   "modified": "2019-03-19 23:11:28.199901", 
   "name": "Assign Vehicle", 
   "override_status": 0, 
+  "parent": null, 
+  "parentfield": null, 
+  "parenttype": null, 
   "send_email_alert": 0, 
   "states": [
    {
@@ -124,6 +163,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "New", 
     "update_field": "status", 
     "update_value": "New"
@@ -133,6 +175,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Active", 
     "update_field": "status", 
     "update_value": "Active"
@@ -142,6 +187,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Reassigned", 
     "update_field": "status", 
     "update_value": "Reassigned"
@@ -151,6 +199,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Suspended", 
     "update_field": "status", 
     "update_value": "Suspended"
@@ -160,6 +211,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Terminated", 
     "update_field": "status", 
     "update_value": "Terminated"
@@ -169,6 +223,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Cancelled", 
     "update_field": "status", 
     "update_value": "Cancelled"
@@ -178,6 +235,9 @@
     "doc_status": "0", 
     "message": null, 
     "next_action_email_template": null, 
+    "parent": "Assign Vehicle", 
+    "parentfield": "states", 
+    "parenttype": "Workflow", 
     "state": "Rejected", 
     "update_field": "status", 
     "update_value": "Rejected"
@@ -190,6 +250,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Active", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "New"
    }, 
    {
@@ -198,6 +261,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Rejected", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "New"
    }, 
    {
@@ -206,6 +272,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Suspended", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Active"
    }, 
    {
@@ -214,6 +283,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Terminated", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Active"
    }, 
    {
@@ -222,6 +294,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Reassigned", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Active"
    }, 
    {
@@ -230,6 +305,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Active", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Suspended"
    }, 
    {
@@ -238,6 +316,9 @@
     "allowed": "Fleet Manager", 
     "condition": null, 
     "next_state": "Active", 
+    "parent": "Assign Vehicle", 
+    "parentfield": "transitions", 
+    "parenttype": "Workflow", 
     "state": "Reassigned"
    }
   ], 

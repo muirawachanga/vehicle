@@ -12,7 +12,8 @@ from frappe.model.document import Document
 
 class VehicleOwnerContract(Document):
     def validate(self):
-        if db.get_value("Vehicle Owner Contract", {"name": self.name}, "contract_status") in ["Cancelled", "Terminated",
-                                                                                      "Rejected"]:
-            frappe.throw(_('Cannot modify contracts in this status.'))
+        if db.get_value(
+            "Vehicle Owner Contract", {"name": self.name}, "contract_status"
+        ) in ["Cancelled", "Terminated", "Rejected"]:
+            frappe.throw(_("Cannot modify contracts in this status."))
             # TODO Check if another active contract exists

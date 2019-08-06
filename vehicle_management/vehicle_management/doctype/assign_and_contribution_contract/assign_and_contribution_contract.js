@@ -76,25 +76,27 @@ frappe.ui.form.on('Assign and contribution contract', {
     calculate_date_amount: function(frm){
         if(frm.doc.start_date && frm.doc.end_date){
             var start_date = moment(frm.doc.start_date)
-            var end_date = moment(frm.doc.end_date)
+            var days = frm.doc.number_of_days
+            var end_date = start_date.add(days, 'days')
+            frm.set_value('end_date', end_date)
             var diff = moment.duration(end_date.diff(start_date))
             var hours = (diff.asHours()/24).toPrecision(2)
             if(frm.doc.amount_per_day){
                 if (hours < 1){
                     hours  = 1
                 }
-                var total_amount = hours * frm.doc.amount_per_day
-                var msg = __('The number of days to be billed are: ') + hours
+                var total_amount = days * frm.doc.amount_per_day
+                var msg = __('The number of days to be billed are: ') + days
                 frappe.msgprint(msg)
                 frm.set_value('total_amount_expected', total_amount)
                 frm.set_value('contributions', [])
                 frm.set_value('total_amount', total_amount)
+                frm.set_value('termination_date', frm.doc.end_date)
             }
         }
     },
-    end_date: function(frm){
+    number_of_days: function(frm){
         frm.trigger('calculate_date_amount')
-        frm.set_value('termination_date', frm.doc.end_date)
         if (frm.doc.vehicle_status == 'Self Drive'){
 
         }

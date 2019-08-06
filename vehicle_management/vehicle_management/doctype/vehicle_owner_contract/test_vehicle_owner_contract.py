@@ -8,5 +8,6 @@ import unittest
 
 # test_records = frappe.get_test_records('Owner Contract')
 
+
 class TestOwnerContract(unittest.TestCase):
     pass
